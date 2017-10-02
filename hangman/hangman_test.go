@@ -96,7 +96,7 @@ func runGame(name string, test gameTest, t *testing.T) {
 
 	//now consider the response
 	if test.Reply.Error != res.Error {
-		t.Errorf("expected error %s but got %s", test.Reply.Error, res.Error)
+		t.Errorf("expected error %s but got %s for game %s", test.Reply.Error, res.Error, name)
 	}
 	if !reflect.DeepEqual(res.Game, test.Reply.Game) {
 		t.Errorf("game state differs from expected: %s", name)
