@@ -95,18 +95,10 @@ func runGame(name string, test gameTest, t *testing.T) {
 	}
 
 	//now consider the response
-	switch {
-	case test.Reply.Error != nil:
-		if test.Reply.Error != res.Error {
-			t.Errorf("expected error %s but got %s", test.Reply.Error, res.Error)
-		}
-
-		if !reflect.DeepEqual(res.Game, test.Reply.Game) {
-			t.Errorf("game state differs from expected: %s", name)
-		}
-	default:
-		if !reflect.DeepEqual(res.Game, test.Reply.Game) {
-			t.Errorf("game state differs from expected: %s", name)
-		}
+	if test.Reply.Error != res.Error {
+		t.Errorf("expected error %s but got %s", test.Reply.Error, res.Error)
+	}
+	if !reflect.DeepEqual(res.Game, test.Reply.Game) {
+		t.Errorf("game state differs from expected: %s", name)
 	}
 }
