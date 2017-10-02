@@ -38,6 +38,8 @@ cd hangman && go test
 cd hangman && go test --race
 ```
 
+The focus here is on testing the interface provided by the "hangman" package.
+
 ## To-do
 
-* Integration tests
+* Integration tests (run server in container, send API requests, compare returned data to expected)
