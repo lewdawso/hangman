@@ -151,6 +151,8 @@ func main() {
 					id: game,
 				}
 				r.done <- rep
+			default:
+				break
 			}
 		}
 	}()
