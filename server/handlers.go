@@ -91,6 +91,7 @@ func guessHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
 
+	//guess should be in body as JSON {"guess": [a-z]}
 	dat, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		log.Fatalf("failed to read data from response body: %s", err)
