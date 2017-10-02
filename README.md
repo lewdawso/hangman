@@ -40,6 +40,16 @@ cd hangman && go test --race
 
 The focus here is on testing the interface provided by the "hangman" package.
 
+## Concurrency
+
+Each hangman game lives inside a goroutine. The only way to talk to it is by sending requests to an input channel and
+waiting for a response from an output channel. This serialises access to each game.
+
+Similarly, the server needs to be able to handle concurrent HTTP requests. You should not, for example,
+be able to guess a character for a game whilst a list of games is being generated - this would lead to inconsistent
+results. To deal with this, the "server" also lives inside a goroutine and is exposed only through a channel which the
+HTTP handlers can send their requests to.
+
 ## To-do
 
 * Integration tests (run server in container, send API requests, compare returned data to expected)
