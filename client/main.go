@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"regexp"
+	"time"
 )
 
 const (
@@ -20,6 +22,10 @@ COMMAND:
 	guess   id  [a-z]        guess
 	help
 `
+
+var netClient = &http.Client{
+	Timeout: time.Second * 10,
+}
 
 func usage() {
 	fmt.Printf(help)

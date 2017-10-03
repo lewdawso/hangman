@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"net/http"
 	"strings"
 )
 
@@ -18,7 +17,7 @@ func newGame() {
 
 	addr := fmt.Sprintf("http://%s:%s/games", server, port)
 
-	resp, err := http.Post(addr, "", strings.NewReader(""))
+	resp, err := netClient.Post(addr, "", strings.NewReader(""))
 	if err != nil {
 		log.Fatalf("failed to create a new game: %s", err)
 	}
@@ -44,7 +43,7 @@ func guess(index, char string) {
 		log.Fatalf("failed to marshal json data: %s", err)
 	}
 
-	resp, err := http.Post(addr, "application/json", bytes.NewReader(raw))
+	resp, err := netClient.Post(addr, "application/json", bytes.NewReader(raw))
 	if err != nil {
 		log.Fatalf("failed to guess character: %s", err)
 	}
@@ -63,7 +62,7 @@ func listGames() {
 
 	addr := fmt.Sprintf("http://%s:%s/games", server, port)
 
-	resp, err := http.Get(addr)
+	resp, err := netClient.Get(addr)
 	if err != nil {
 		log.Fatalf("failed to get list of games: %s", err)
 	}
@@ -86,7 +85,7 @@ func listGame(index string) {
 
 	addr := fmt.Sprintf("http://%s:%s/games/%s", server, port, index)
 
-	resp, err := http.Get(addr)
+	resp, err := netClient.Get(addr)
 	if err != nil {
 		log.Fatalf("failed to get game: %s", err)
 	}
