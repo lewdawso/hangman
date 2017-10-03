@@ -69,6 +69,24 @@ func TestInvalidChar(t *testing.T) {
 	}
 }
 
+func TestInvalidReqType(t *testing.T) {
+
+	in, out := NewGame()
+
+	req := Request{
+		Type:  2,
+		Value: "",
+	}
+
+	in <- req
+
+	reply := <-out
+
+	if reply.Error != errInvalidReqType {
+		t.Errorf("expected error %s but got %s", errInvalidReqType, reply.Error)
+	}
+}
+
 func TestGame(t *testing.T) {
 
 	//set gameWords to our testWord for predictable output
