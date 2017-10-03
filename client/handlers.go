@@ -21,7 +21,9 @@ func newGame() {
 	if err != nil {
 		log.Fatalf("failed to create a new game: %s", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	games, err := processResponse(resp)
 	if err != nil {
@@ -47,7 +49,9 @@ func guess(index, char string) {
 	if err != nil {
 		log.Fatalf("failed to guess character: %s", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	games, err := processResponse(resp)
 	if err != nil {
@@ -66,7 +70,9 @@ func listGames() {
 	if err != nil {
 		log.Fatalf("failed to get list of games: %s", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	games, err := processResponse(resp)
 	if err != nil {
@@ -89,7 +95,9 @@ func listGame(index string) {
 	if err != nil {
 		log.Fatalf("failed to get game: %s", err)
 	}
-	defer resp.Body.Close()
+	defer func() {
+		_ = resp.Body.Close()
+	}()
 
 	games, err := processResponse(resp)
 	if err != nil {
