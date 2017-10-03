@@ -16,7 +16,7 @@ To build the hangman client:
 cd client && ./build.sh
 ```
 
-## Usage
+## Client Usage
 
 ```
 USAGE: hangman COMMAND
@@ -40,6 +40,8 @@ cd hangman && go test --race
 
 The focus here is on testing the interface provided by the "hangman" package.
 
+go test --cover = 89.7%
+
 ## Concurrency
 
 Each hangman game lives inside a goroutine. The only way to talk to it is by sending requests to an input channel and
@@ -53,3 +55,4 @@ HTTP handlers can send their requests to.
 ## To-do
 
 * Integration tests (run server in container, send API requests, compare returned data to expected)
+* Server unit tests
