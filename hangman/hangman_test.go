@@ -87,6 +87,30 @@ func TestInvalidReqType(t *testing.T) {
 	}
 }
 
+func TestWordWithTwoCharSame(t *testing.T) {
+
+	testWord := "aardvark"
+
+	gameWords = []string{testWord}
+
+	game := gameTest{
+		Reply: Reply{
+			Error: nil,
+			Game: Game{
+				word:    emptyWordReply,
+				Strikes: 5,
+				Found:   8,
+				Misses:  []byte("z"),
+				Masked:  []byte(testWord),
+				State:   success,
+			},
+		},
+		Sequence: "azrdvrk",
+	}
+
+	runGame("testWordWithTwoCharSame", game, t)
+}
+
 func TestGame(t *testing.T) {
 
 	//set gameWords to our testWord for predictable output
