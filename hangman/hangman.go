@@ -92,8 +92,8 @@ func NewGame() (chan Request, chan Reply) {
 		g.Masked = append(g.Masked, "_"[0])
 	}
 
-	in := make(chan Request)
-	out := make(chan Reply)
+	in := make(chan Request, 1)
+	out := make(chan Reply, 1)
 
 	go g.handleRequest(in, out)
 	return in, out
