@@ -1,6 +1,6 @@
-# hangman
+# go-play-hangman
 
-Server implementation of a hangman game.
+Implementation of a hangman game as a server side application.
 
 ## Building
 
@@ -15,6 +15,20 @@ To build the hangman client:
 ```
 cd client && ./build.sh
 ```
+
+You'll need Go installed for this.
+
+## Running
+
+To start playing hangman, first launch the server:
+
+```
+cd server && ./server &
+```
+
+Then use the client as outlined below.
+
+Whilst the server is running, the states of all games persist.
 
 ## Client Usage
 
@@ -56,3 +70,9 @@ HTTP handlers can send their requests to.
 
 * Integration tests (run server in container, send API requests, compare returned data to expected)
 * Server unit tests
+
+## To-do better
+
+* Use grpc to take care of the routes and HTTP api component .. this would also be better as protobufs are used as the data interchange format.
+* Could implement the client as a "shell" instead of a utility.
+* Lots more words.
