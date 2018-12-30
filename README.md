@@ -76,3 +76,4 @@ HTTP handlers can send their requests to.
 * Use grpc to take care of the routes and HTTP api component .. this would also be better as protobufs are used as the data interchange format.
 * Could implement the client as a "shell" instead of a utility.
 * Lots more words.
+* Build with Nix.
